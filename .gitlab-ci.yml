@@ -13,7 +13,7 @@ build:
     - 'docker build -t eip.ds/spark-submit:2.4.3 ./docker/spark-submit'
     - 'docker login -u $IMAGEHUB_USERNAME -p $IMAGEHUB_PASSWORD imagehub.cdc.gov:5989'
     - 'docker tag eip.ds/spark-base:2.4.3 imagehub.cdc.gov:5989/eip.ds/spark-base:2.4.3'
-    - 'docker push imagehub.cdc.gov:5989/eip.ds/spark-base:2.4.3:latest'
+    - 'docker push imagehub.cdc.gov:5989/eip.ds/spark-base:2.4.3'
     - 'docker tag eip.ds/spark-master:2.4.3 imagehub.cdc.gov:5989/eip.ds/spark-master:2.4.3'
     - 'docker push imagehub.cdc.gov:5989/eip.ds/spark-master:2.4.3'
     - 'docker tag eip.ds/spark-worker:2.4.3 imagehub.cdc.gov:5989/eip.ds/spark-worker:2.4.3'
