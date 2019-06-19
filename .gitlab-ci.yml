@@ -1,0 +1,25 @@
+stages:
+  - build
+
+before_script:
+  - docker info
+
+build:
+  stage: build
+  script:
+    - 'docker build -t eip.ds/spark-base:2.4.3 ./docker/base'
+    - 'docker build -t eip.ds/spark-master:2.4.3 ./docker/spark-master'
+    - 'docker build -t eip.ds/spark-worker:2.4.3 ./docker/spark-worker'
+    - 'docker build -t eip.ds/spark-submit:2.4.3 ./docker/spark-submit'
+    - 'docker login -u $IMAGEHUB_USERNAME -p $IMAGEHUB_PASSWORD imagehub.cdc.gov:5989'
+    - 'docker tag eip.ds/spark-base:2.4.3:latest imagehub.cdc.gov:5989/eip.ds/spark-base:2.4.3:latest'
+    - 'docker push imagehub.cdc.gov:5989/eip.ds/spark-base:2.4.3:latest'
+    - 'docker tag eip.ds/spark-master:2.4.3:latest imagehub.cdc.gov:5989/eip.ds/spark-master:2.4.3:latest'
+    - 'docker push imagehub.cdc.gov:5989/eip.ds/spark-master:2.4.3:latest'
+    - 'docker tag eip.ds/spark-worker:2.4.3:latest imagehub.cdc.gov:5989/eip.ds/spark-worker:2.4.3:latest'
+    - 'docker push imagehub.cdc.gov:5989/eip.ds/spark-worker:2.4.3:latest'
+    - 'docker tag eip.ds/spark-submit:2.4.3:latest imagehub.cdc.gov:5989/eip.ds/spark-submit:2.4.3:latest'
+    - 'docker push imagehub.cdc.gov:5989/eip.ds/spark-submit:2.4.3:latest'
+  only:
+    - master
+  image: docker:stable
