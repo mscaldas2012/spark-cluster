@@ -1,3 +1,9 @@
+This is a port from https://github.com/mvillarrealb/docker-spark-cluster
+
+All Spark images are 2.4.3 in this port.
+
+(rrt8)
+
 # Spark Cluster with Docker & docker-compose
 
 # General
